@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../extern/mpc/mpc.h
+stdlib.h
+-
+stdio.h
+-
+stdarg.h
+-
+string.h
+-
+math.h
+-
+errno.h
+-
+ctype.h
+-
+
+D:/Repos/V3MathExpressionGenerator/src/main.c
+stdio.h
+-
+stdlib.h
+-
+mpc/mpc.h
+-
+

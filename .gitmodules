@@ -1,0 +1,3 @@
+[submodule "extern/mpc"]
+	path = extern/mpc
+	url = git@github.com:orangeduck/mpc.git
