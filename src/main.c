@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <mpc/mpc.h>
+#include "lang/AST/IO.h"
+
+void traversal_expression(mpc_ast_t *ast, Node **root, int depth);
 
 char *load_grammar(char const *path)
 {
@@ -25,38 +28,46 @@ char *load_grammar(char const *path)
 int main(int argc, char **argv)
 {
     char *grammar = load_grammar("../grammar.mpc");
-    mpc_parser_t *Comment = mpc_new("comment");
-    mpc_parser_t *Identifier = mpc_new("identifier");
-    mpc_parser_t *Number = mpc_new("number");
-    mpc_parser_t *Call = mpc_new("call");
-    mpc_parser_t *Factor = mpc_new("factor");
-    mpc_parser_t *Term = mpc_new("term");
-    mpc_parser_t *Lexp = mpc_new("lexp");
-    mpc_parser_t *Generic = mpc_new("generic");
-    mpc_parser_t *Type = mpc_new("type");
-    mpc_parser_t *Variable = mpc_new("variable");
-    mpc_parser_t *Args = mpc_new("args");
-    mpc_parser_t *Body = mpc_new("body");
-    mpc_parser_t *Generate = mpc_new("generate");
-    mpc_parser_t *Procedure = mpc_new("procedure");
-    mpc_parser_t *Lang = mpc_new("lang");
+    mpc_parser_t *SOI = mpc_new("SOI");
+    mpc_parser_t *EOI = mpc_new("EOI");
+    mpc_parser_t *binop_term = mpc_new("binop_term");
+    mpc_parser_t *binop_exp = mpc_new("binop_exp");
+    mpc_parser_t *unop = mpc_new("unop");
+    mpc_parser_t *parens = mpc_new("parens");
+    mpc_parser_t *identifier = mpc_new("identifier");
+    mpc_parser_t *decimalc = mpc_new("decimal_const");
+    mpc_parser_t *doublec = mpc_new("double_const");
+    mpc_parser_t *literal = mpc_new("literal");
+    mpc_parser_t *array = mpc_new("array");
+    mpc_parser_t *field = mpc_new("field");
+    mpc_parser_t *primary = mpc_new("primary");
+    mpc_parser_t *func_call = mpc_new("func_call");
+    mpc_parser_t *postfix = mpc_new("postfix");
+    mpc_parser_t *unary = mpc_new("unary");
+    mpc_parser_t *term = mpc_new("term");
+    mpc_parser_t *expression = mpc_new("expression");
+    mpc_parser_t *lang = mpc_new("lang");
 
     mpca_lang(MPCA_LANG_PREDICTIVE, grammar,
-        Comment,
-        Identifier,
-        Number,
-        Call,
-        Factor,
-        Term,
-        Lexp,
-        Generic,
-        Type,
-        Variable,
-        Args,
-        Body,
-        Generate,
-        Procedure,
-        Lang,
+        SOI,
+        EOI,
+        binop_term,
+        binop_exp,
+        unop,
+        parens,
+        identifier,
+        decimalc,
+        doublec,
+        literal,
+        array,
+        field,
+        primary,
+        func_call,
+        postfix,
+        unary,
+        term,
+        expression,
+        lang,
         0
     );
 
@@ -64,7 +75,7 @@ int main(int argc, char **argv)
 
     if (argc > 1) {
         mpc_result_t r;
-        if (mpc_parse_contents(argv[1], Lang, &r)) {
+        if (mpc_parse_contents(argv[1], lang, &r)) {
             mpc_ast_print(r.output);
             ast = r.output;
         } else {
@@ -72,30 +83,31 @@ int main(int argc, char **argv)
             mpc_err_delete(r.error);
         }
     }
-
-    int index = mpc_ast_get_index(ast, "procedure|>");
-    mpc_ast_t *child = mpc_ast_get_child(ast, "procedure|>");
-    if (child != 0) {
-
-    }
+    Node *tree = 0;
+    traversal_expression(ast->children[1], &tree, 0);
+    print_tree(tree);
     mpc_ast_delete(ast);
 
-    mpc_cleanup(15,
-        Comment,
-        Identifier,
-        Number,
-        Call,
-        Factor,
-        Term,
-        Lexp,
-        Generic,
-        Type,
-        Variable,
-        Args,
-        Body,
-        Generate,
-        Procedure,
-        Lang
+    mpc_cleanup(18,
+        SOI,
+        EOI,
+        binop_term,
+        binop_exp,
+        unop,
+        parens,
+        identifier,
+        decimalc,
+        doublec,
+        literal,
+        array,
+        field,
+        primary,
+        func_call,
+        postfix,
+        unary,
+        term,
+        expression,
+        lang
     );
 
     return 0;

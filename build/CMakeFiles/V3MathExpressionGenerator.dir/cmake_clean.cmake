@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/V3MathExpressionGenerator.dir/extern/mpc/mpc.c.obj"
   "CMakeFiles/V3MathExpressionGenerator.dir/src/main.c.obj"
+  "CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj"
   "V3MathExpressionGenerator.exe"
   "V3MathExpressionGenerator.exe.manifest"
   "V3MathExpressionGenerator.pdb"

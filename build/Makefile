@@ -195,6 +195,33 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/traversal.obj: src/traversal.c.obj
+
+.PHONY : src/traversal.obj
+
+# target to build an object file
+src/traversal.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj
+.PHONY : src/traversal.c.obj
+
+src/traversal.i: src/traversal.c.i
+
+.PHONY : src/traversal.i
+
+# target to preprocess a source file
+src/traversal.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.i
+.PHONY : src/traversal.c.i
+
+src/traversal.s: src/traversal.c.s
+
+.PHONY : src/traversal.s
+
+# target to generate assembly for a file
+src/traversal.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.s
+.PHONY : src/traversal.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -210,6 +237,9 @@ help:
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
+	@echo ... src/traversal.obj
+	@echo ... src/traversal.i
+	@echo ... src/traversal.s
 .PHONY : help
 
 
