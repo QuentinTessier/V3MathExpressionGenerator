@@ -11,7 +11,7 @@ define tuple<x : f32, y : f32, z : f32> as vec3f where
 
 construct : '{' <expression> (',' <expression>)* '}'
 constructor : "constructor" '(' <arg> (',' <arg>)* ')' "->" <construct>
-tuple  : "tuple<" <arg> (',' <arg>)* '>' "as" <identifier> "where" <constructor>*
+tuple  : "tuple" '<' <arg> (',' <arg>)* '>' "as" <identifier> ("where" <constructor>*)?
 define : "define" <tuple>
 
 */
@@ -33,7 +33,5 @@ formula test(f : f32) : f32 -> f + 1.1
 /* GRAMMAR
 
 formula : "formula" <identifier> '(' <arg> (',' <arg>)* ')' "->" <expression>
-
-NodeFormula { name, [args], body }
 
 */
