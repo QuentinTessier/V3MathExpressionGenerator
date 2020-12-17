@@ -1,5 +1,4 @@
 #include <mpc/mpc.h>
-#include "utils/stack.h"
 #include "lang/AST/binop.h"
 #include "lang/AST/unop.h"
 #include "lang/AST/constant.h"

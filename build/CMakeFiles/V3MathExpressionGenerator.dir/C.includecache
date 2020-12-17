@@ -22,20 +22,6 @@ errno.h
 ctype.h
 -
 
-D:/Repos/V3MathExpressionGenerator/src/lang/AST/IO.h
-Node.h
-D:/Repos/V3MathExpressionGenerator/src/lang/AST/Node.h
-binop.h
-D:/Repos/V3MathExpressionGenerator/src/lang/AST/binop.h
-constant.h
-D:/Repos/V3MathExpressionGenerator/src/lang/AST/constant.h
-variable.h
-D:/Repos/V3MathExpressionGenerator/src/lang/AST/variable.h
-unop.h
-D:/Repos/V3MathExpressionGenerator/src/lang/AST/unop.h
-func.h
-D:/Repos/V3MathExpressionGenerator/src/lang/AST/func.h
-
 D:/Repos/V3MathExpressionGenerator/src/lang/AST/Node.h
 
 D:/Repos/V3MathExpressionGenerator/src/lang/AST/binop.h
@@ -80,13 +66,17 @@ stdlib.h
 Node.h
 D:/Repos/V3MathExpressionGenerator/src/lang/AST/Node.h
 
-D:/Repos/V3MathExpressionGenerator/src/main.c
-stdio.h
--
-stdlib.h
--
+D:/Repos/V3MathExpressionGenerator/src/traversal.c
 mpc/mpc.h
 -
-lang/AST/IO.h
-D:/Repos/V3MathExpressionGenerator/src/lang/AST/IO.h
+lang/AST/binop.h
+D:/Repos/V3MathExpressionGenerator/src/lang/AST/binop.h
+lang/AST/unop.h
+D:/Repos/V3MathExpressionGenerator/src/lang/AST/unop.h
+lang/AST/constant.h
+D:/Repos/V3MathExpressionGenerator/src/lang/AST/constant.h
+lang/AST/variable.h
+D:/Repos/V3MathExpressionGenerator/src/lang/AST/variable.h
+lang/AST/func.h
+D:/Repos/V3MathExpressionGenerator/src/lang/AST/func.h
 

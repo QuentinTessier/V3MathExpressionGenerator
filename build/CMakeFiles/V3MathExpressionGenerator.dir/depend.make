@@ -22,5 +22,4 @@ CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj: ../src/lang/AST/fu
 CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj: ../src/lang/AST/unop.h
 CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj: ../src/lang/AST/variable.h
 CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj: ../src/traversal.c
-CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj: ../src/utils/stack.h
 

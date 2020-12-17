@@ -46,6 +46,10 @@ int main(int argc, char **argv)
     mpc_parser_t *unary = mpc_new("unary");
     mpc_parser_t *term = mpc_new("term");
     mpc_parser_t *expression = mpc_new("expression");
+
+    mpc_parser_t *arg = mpc_new("arg");
+    mpc_parser_t *args = mpc_new("args");
+    mpc_parser_t *formula = mpc_new("formula");
     mpc_parser_t *lang = mpc_new("lang");
 
     mpca_lang(MPCA_LANG_PREDICTIVE, grammar,
@@ -67,6 +71,9 @@ int main(int argc, char **argv)
         unary,
         term,
         expression,
+        arg,
+        args,
+        formula,
         lang,
         0
     );
@@ -83,12 +90,9 @@ int main(int argc, char **argv)
             mpc_err_delete(r.error);
         }
     }
-    Node *tree = 0;
-    traversal_expression(ast->children[1], &tree, 0);
-    print_tree(tree);
     mpc_ast_delete(ast);
 
-    mpc_cleanup(18,
+    mpc_cleanup(21,
         SOI,
         EOI,
         binop_term,
@@ -107,6 +111,9 @@ int main(int argc, char **argv)
         unary,
         term,
         expression,
+        arg,
+        args,
+        formula,
         lang
     );
 
