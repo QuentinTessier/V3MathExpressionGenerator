@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
-#include "container_array.h"
+#include "array.h"
 
 void i_array_write_format(void **array, uint32_t element_size,
     const array_format_t *format, void *userdata)

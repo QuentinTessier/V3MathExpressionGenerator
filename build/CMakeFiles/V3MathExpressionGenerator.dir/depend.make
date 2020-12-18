@@ -23,3 +23,9 @@ CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj: ../src/lang/AST/un
 CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj: ../src/lang/AST/variable.h
 CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj: ../src/traversal.c
 
+CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_general.c.obj: ../src/utils/array.h
+CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_general.c.obj: ../src/utils/array_general.c
+
+CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_io.c.obj: ../src/utils/array.h
+CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_io.c.obj: ../src/utils/array_io.c
+

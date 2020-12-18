@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "container_array.h"
+#include "array.h"
 
 void *i_array_grow(void **array, uint32_t element_size,
     uint32_t required_elements)

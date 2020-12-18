@@ -7,6 +7,8 @@ set(CMAKE_DEPENDS_CHECK_C
   "D:/Repos/V3MathExpressionGenerator/extern/mpc/mpc.c" "D:/Repos/V3MathExpressionGenerator/build/CMakeFiles/V3MathExpressionGenerator.dir/extern/mpc/mpc.c.obj"
   "D:/Repos/V3MathExpressionGenerator/src/main.c" "D:/Repos/V3MathExpressionGenerator/build/CMakeFiles/V3MathExpressionGenerator.dir/src/main.c.obj"
   "D:/Repos/V3MathExpressionGenerator/src/traversal.c" "D:/Repos/V3MathExpressionGenerator/build/CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.obj"
+  "D:/Repos/V3MathExpressionGenerator/src/utils/array_general.c" "D:/Repos/V3MathExpressionGenerator/build/CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_general.c.obj"
+  "D:/Repos/V3MathExpressionGenerator/src/utils/array_io.c" "D:/Repos/V3MathExpressionGenerator/build/CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_io.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

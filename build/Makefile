@@ -222,6 +222,60 @@ src/traversal.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/traversal.c.s
 .PHONY : src/traversal.c.s
 
+src/utils/array_general.obj: src/utils/array_general.c.obj
+
+.PHONY : src/utils/array_general.obj
+
+# target to build an object file
+src/utils/array_general.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_general.c.obj
+.PHONY : src/utils/array_general.c.obj
+
+src/utils/array_general.i: src/utils/array_general.c.i
+
+.PHONY : src/utils/array_general.i
+
+# target to preprocess a source file
+src/utils/array_general.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_general.c.i
+.PHONY : src/utils/array_general.c.i
+
+src/utils/array_general.s: src/utils/array_general.c.s
+
+.PHONY : src/utils/array_general.s
+
+# target to generate assembly for a file
+src/utils/array_general.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_general.c.s
+.PHONY : src/utils/array_general.c.s
+
+src/utils/array_io.obj: src/utils/array_io.c.obj
+
+.PHONY : src/utils/array_io.obj
+
+# target to build an object file
+src/utils/array_io.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_io.c.obj
+.PHONY : src/utils/array_io.c.obj
+
+src/utils/array_io.i: src/utils/array_io.c.i
+
+.PHONY : src/utils/array_io.i
+
+# target to preprocess a source file
+src/utils/array_io.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_io.c.i
+.PHONY : src/utils/array_io.c.i
+
+src/utils/array_io.s: src/utils/array_io.c.s
+
+.PHONY : src/utils/array_io.s
+
+# target to generate assembly for a file
+src/utils/array_io.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\V3MathExpressionGenerator.dir\build.make CMakeFiles/V3MathExpressionGenerator.dir/src/utils/array_io.c.s
+.PHONY : src/utils/array_io.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -240,6 +294,12 @@ help:
 	@echo ... src/traversal.obj
 	@echo ... src/traversal.i
 	@echo ... src/traversal.s
+	@echo ... src/utils/array_general.obj
+	@echo ... src/utils/array_general.i
+	@echo ... src/utils/array_general.s
+	@echo ... src/utils/array_io.obj
+	@echo ... src/utils/array_io.i
+	@echo ... src/utils/array_io.s
 .PHONY : help
 
 

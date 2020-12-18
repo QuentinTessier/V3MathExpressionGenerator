@@ -31,7 +31,7 @@ int i_array_erase_swap(void **array, uint32_t element_size, uint32_t pos);
 int i_array_erase_shift(void **array, uint32_t element_size, uint32_t pos);
 
 #define ARRAY_PREALLOC(a, size)                                             \
-    if (ARRAY_SIZE(a) == 0) { i_array_grow((void **)&(a), sizeof(*a), size); }
+    ((a) ? ((i_array_grow((void **)&(a), sizeof(*a), size) != 0) ? 1 : 0) : 0)
 
 #define ARRAY_PUSH(a, e)                                                    \
     i_array_insert((void **)&(a), (void *)&(e), sizeof(e), ARRAY_SIZE(a))
