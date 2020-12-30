@@ -1,10 +1,10 @@
 #pragma once
 
-typedef unsigned long int Hashed;
+#include <stdint.h>
 
-Hashed hash(unsigned char *str)
+static uint64_t hash(unsigned char *str)
 {
-    Hashed h = 5281;
+    uint64_t h = 5281;
     int c;
 
     while (c = *str++)

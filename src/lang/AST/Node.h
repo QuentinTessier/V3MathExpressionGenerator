@@ -1,14 +1,8 @@
 #pragma once
 
-enum NodeType {
-    DecimalConstant,
-    DoubleConstant,
-    BinaryOperation,
-    UnaryOperation,
-    Variable,
-    FunctionCall
-};
+typedef void *Node;
+typedef uint64_t NodeType;
 
-typedef struct node {
-    enum NodeType type;
-} Node;
+typedef struct NodeInfos {
+    NodeType type;
+} NodeInfos;

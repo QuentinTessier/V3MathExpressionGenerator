@@ -6,6 +6,7 @@ include_directories(src)
 
 add_executable(V3MathExpressionGenerator
     src/main.c
-    src/traversal.c
+    src/lang/AST/AST_Constructor.c
     extern/mpc/mpc.c
+    extern/Array/src/array.c
 )
