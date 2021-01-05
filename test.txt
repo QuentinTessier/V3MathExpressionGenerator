@@ -1,1 +1,18 @@
-formula test(x : f32) : f32 -> x
+1 + 1 * 1 => #define test (1 * 1) + 1
+a + 1 * 1 => #define test(a) (1 * 1) + a
+
+a + 1 * 1 => (int * int) + int
+
+formula test(f : f32) : f32 -> f + 1.f => f32 test(f32 f) { return f + 1.0f; }
+
+----------------------------------------------------------------------------------------------------------------------
+
+tuple<x : f32, y : f32> as vec2f
+
+formula test(v : vec2f) : f32 -> v.x + v.y  => f32 test(vec2f v) { return v.x + v.y; }
+
+tuple<a : vec2f, b : vec2f> as mat2f
+
+m : mat2f => m.a.x : f32
+
+tuple<x : f32, y : f32> as vec2f where
