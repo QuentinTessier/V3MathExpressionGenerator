@@ -49,7 +49,8 @@ define PI : f32 -> 3.14...
 # "Function" definition (every function is pure and can only produce a return value, can't modify arguments)
 formula myFormula(x : f32) -> x
 
-# Possible addon to the language
+# Possible addon to the language:
+#
 # the 'any' type could be added to import non pure math types from C, for instance:
 # struct SomeECSComponent {
 #   vec2f SomeVector;
@@ -58,5 +59,7 @@ formula myFormula(x : f32) -> x
 #
 # tuple<SomeVector : vec2f, any SomePointerToSomeNonMathData> as SomeECSComponent where
 #   ...
+#
+# Conditional branching (grammar not defined yet)
 
 ```
