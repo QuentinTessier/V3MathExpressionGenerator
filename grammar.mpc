@@ -1,4 +1,3 @@
-SOI             : /^/                                                                   ;
 EOI             : /$/                                                                   ;
 binop_term      : /*/
                 | /\//
