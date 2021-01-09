@@ -4,7 +4,10 @@ project(V3MathExpressionGenerator LANGUAGES C)
 include_directories(extern)
 include_directories(src)
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/grammar.mpc DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 add_executable(V3MathExpressionGenerator
     src/main.c
+    src/lang/lang.c
     extern/mpc/mpc.c
 )

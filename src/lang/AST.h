@@ -3,9 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Nodes/Integer.h"
+#include "Nodes/BinaryOperator.h"
+#include "Nodes/UnaryOperator.h"
 
 typedef enum ASTNodeType {
-    ASTN_Integer
+    ASTN_Integer,
+    ASTN_BinaryOperator,
+    ASTN_UnaryOperator
 } ASTNodeType;
 
 typedef struct ASTNode {
@@ -13,6 +17,8 @@ typedef struct ASTNode {
 
     union {
         ASTNodeIntegerData integer;
+        ASTNodeBinaryOperatorData binop;
+        ASTNodeUnaryOperatorData unop;
     };
 } ASTNode;
 
@@ -33,6 +39,28 @@ static inline ASTNode *new_ASTNodeInteger(ASTNodeType type, int32_t value)
     if (a) {
         a->type = type;
         a->integer.value = value;
+    }
+    return a;
+}
+
+static inline ASTNode *new_ASTNodeBinaryOperator(ASTNodeType type, enum BinaryOperatorType otype)
+{
+    ASTNode *a = (ASTNode *)calloc(1, sizeof(ASTNode));
+    if (a) {
+        a->type = type;
+        a->binop.type = otype;
+        a->binop.LHS = a->binop.RHS = 0;
+    }
+    return a;
+}
+
+static inline ASTNode *new_ASTNodeUnaryOperator(ASTNodeType type, enum UnaryOperatorType otype)
+{
+    ASTNode *a = (ASTNode *)calloc(1, sizeof(ASTNode));
+    if (a) {
+        a->type = type;
+        a->binop.type = otype;
+        a->binop.LHS = 0;
     }
     return a;
 }
