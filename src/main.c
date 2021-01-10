@@ -53,6 +53,46 @@ void DestroyParser()
     }
 }
 
+int REPL(int build_AST, mpc_parser_t *lang, ASTNode **root)
+{
+    printf("REPL?\n");
+    char buffer[2048] = {0}; // No getline on windows
+    int run = 1;
+    mpc_result_t r;
+
+    fprintf(stdout, "$> ");
+    while (fgets(buffer, 2048, stdin)) {
+        buffer[strlen(buffer) - 1] = 0;
+        if (strcmp(buffer, "exit") == 0) {
+            break;
+        } else {
+            if (mpc_parse("REPL", buffer, lang, &r)) {
+                mpc_ast_print(r.output);
+                mpc_ast_t *ast = r.output;
+                if (strcmp(ast->tag, ">") == 0)
+                    ast = ast->children[0];
+                if (build_AST) {
+                    if (!BuildExpressionASTFromMPC(ast, root)) {
+                        fprintf(stderr, "Failed to build tree\n");
+                    } else {
+                        PrintAST(*root);
+                        fprintf(stdout, "\n");
+                        DestroyAST(*root);
+                        *root = 0;
+                    }
+                }
+                mpc_ast_delete(r.output);
+            } else {
+                mpc_err_print(r.error);
+                mpc_err_delete(r.error);
+            }
+        }
+        fprintf(stdout, "$> ");
+        memset(buffer, 0, 2048);
+    }
+    return 0;
+}
+
 int main(int ac, char **av)
 {
     mpc_parser_t *lang = 0;
@@ -67,22 +107,18 @@ int main(int ac, char **av)
             mpc_ast_t *ast = r.output;
             if (strcmp(ast->tag, ">") == 0)
                 ast = ast->children[0];
-            if (!BuildExpressionASTFromMPC(ast->children[0], &root))
+            if (!BuildExpressionASTFromMPC(ast, &root))
                 fprintf(stderr, "Failed to build tree\n");
         } else {
             mpc_err_print(r.error);
         }
     } else {
-        if (mpc_parse_pipe("<stdin>", stdin, lang, &r)) {
-            mpc_ast_print(r.output);
-        } else {
-            mpc_err_print(r.error);
-        }
+        return REPL(1, lang, &root);
     }
-    PrintAST(root);
-    printf("\n");
-    TranspileAST(root, "TEST");
+    //PrintAST(root);
+    //printf("\n");
+    //TranspileAST(root, "TEST");
     DestroyParser();
-    DestroyAST(root);
+    //DestroyAST(root);
     return 0;
 }

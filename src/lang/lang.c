@@ -27,6 +27,7 @@ int BuildTermASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
         return BuildPrimaryASTFromMPC(mroot, aroot);
     int first_pass = 1;
     mpc_ast_t *child = mpc_ast_get_child_lb(mroot, "binop_term|regex", 0);
+    printf("%s\n", child->tag);
     *aroot = new_ASTNodeBinaryOperator(ASTN_BinaryOperator, ConvertContentToBinaryOperatorType(child->contents));
     if (*aroot == 0)
         return 0;
@@ -57,7 +58,7 @@ int BuildExpressionASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
     int index = mpc_ast_get_index_lb(mroot, "binop_exp|regex", 0);
 
     if (index == -1)
-        return BuildTermASTFromMPC(mroot, aroot);
+        return BuildTermASTFromMPC((mroot->children_num == 1 ? mroot->children[0] : mroot), aroot);
     int first_pass = 1;
     mpc_ast_t *child = mpc_ast_get_child_lb(mroot, "binop_exp|regex", 0);
     *aroot = new_ASTNodeBinaryOperator(ASTN_BinaryOperator, ConvertContentToBinaryOperatorType(child->contents));
