@@ -100,3 +100,19 @@ void PrintAST(ASTNode *root)
         }
     }
 }
+
+void DestroyAST(ASTNode *root)
+{
+    if (root) {
+        if (root->type == ASTN_Integer) {
+            free(root);
+        } else if (root->type == ASTN_UnaryOperator) {
+            DestroyAST(root->unop.LHS);
+            free(root);
+        } else if (root->type, ASTN_BinaryOperator) {
+            DestroyAST(root->binop.LHS);
+            DestroyAST(root->binop.RHS);
+            free(root);
+        }
+    }
+}

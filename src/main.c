@@ -80,6 +80,9 @@ int main(int ac, char **av)
         }
     }
     PrintAST(root);
+    printf("\n");
+    TranspileAST(root, "TEST");
     DestroyParser();
+    DestroyAST(root);
     return 0;
 }

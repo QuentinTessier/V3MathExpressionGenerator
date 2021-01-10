@@ -9,5 +9,6 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/grammar.mpc DESTINATION ${CMAKE_CURRENT_BI
 add_executable(V3MathExpressionGenerator
     src/main.c
     src/lang/lang.c
+    src/lang/transpile.c
     extern/mpc/mpc.c
 )
