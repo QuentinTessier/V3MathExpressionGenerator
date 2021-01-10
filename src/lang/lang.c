@@ -1,5 +1,19 @@
 #include <string.h>
+#include <stdlib.h>
 #include "lang.h"
+
+int BuildLiteralASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
+{
+    size_t bsize = strlen(mroot->children[0]->contents) + strlen(mroot->children[2]->contents) + 2;
+    char *buffer = calloc(bsize, sizeof(char));
+
+    strcat(buffer, mroot->children[0]->contents);
+    strcat(buffer, ".");
+    strcat(buffer, mroot->children[2]->contents);
+    *aroot = new_ASTNodeFloating(ASTN_Floating, atof(buffer));
+    free(buffer);
+    return (*aroot) ? 1 : 0;
+}
 
 int BuildPrimaryASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
 {
@@ -12,9 +26,7 @@ int BuildPrimaryASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
         *aroot = new_ASTNodeInteger(ASTN_Integer, atoi(mroot->contents));
         return (*aroot != 0) ? 1 : 0;
     } else if (strstr(mroot->tag, "literal|>") != 0) {
-        // TO-DO: Read a floating point value instead of a integer
-        *aroot = new_ASTNodeInteger(ASTN_Integer, atoi(mroot->contents));
-        return (*aroot != 0) ? 1 : 0;
+        return BuildLiteralASTFromMPC(mroot, aroot);
     }
     return 0;
 }
@@ -91,6 +103,8 @@ void PrintAST(ASTNode *root)
     if (root) {
         if (root->type == ASTN_Integer) {
             printf("%d", root->integer.value);
+        } else if (root->type == ASTN_Floating) {
+            printf("%.2ff", root->floating.value);
         } else if (root->type == ASTN_UnaryOperator) {
             printf("(-)");
             PrintAST(root->unop.LHS);

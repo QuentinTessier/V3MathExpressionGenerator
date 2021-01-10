@@ -5,7 +5,7 @@
 #include "utils/mpc_step.h"
 #include "lang/lang.h"
 
-#define NParser 13
+#define NParser 15
 mpc_parser_t *LanguageParser[NParser] = {
     0
 };
@@ -14,8 +14,9 @@ int ConstructParser(char const *filepath, mpc_parser_t **lang)
 {
     static const char names[][32] = {
         "SOI", "EOI", "binop_term", "binop_exp", "unop",
-        "integer", "literal", "parens", "primary", "unary",
-        "term", "expression", "lang"
+        "identifier", "variable", "integer", "literal",
+        "parens", "primary", "unary", "term", "expression",
+        "lang"
     };
     for (int i = 0; i < NParser; ++i) {
         LanguageParser[i] = mpc_new(names[i]);
@@ -35,6 +36,8 @@ int ConstructParser(char const *filepath, mpc_parser_t **lang)
             LanguageParser[10],
             LanguageParser[11],
             LanguageParser[12],
+            LanguageParser[13],
+            LanguageParser[14],
             0
         );
     if (err) {
@@ -77,6 +80,7 @@ int REPL(int build_AST, mpc_parser_t *lang, ASTNode **root)
                     } else {
                         PrintAST(*root);
                         fprintf(stdout, "\n");
+                        //TranspileAST(*root, "REPL");
                         DestroyAST(*root);
                         *root = 0;
                     }
@@ -109,16 +113,21 @@ int main(int ac, char **av)
                 ast = ast->children[0];
             if (!BuildExpressionASTFromMPC(ast, &root))
                 fprintf(stderr, "Failed to build tree\n");
+            else {
+                PrintAST(root);
+                printf("\n");
+                TranspileAST(root, "TEST");
+                DestroyAST(root);
+            }
+            mpc_ast_delete(r.output);
         } else {
             mpc_err_print(r.error);
+            mpc_err_delete(r.error);
         }
     } else {
         return REPL(1, lang, &root);
     }
-    //PrintAST(root);
-    //printf("\n");
-    //TranspileAST(root, "TEST");
+
     DestroyParser();
-    //DestroyAST(root);
     return 0;
 }
