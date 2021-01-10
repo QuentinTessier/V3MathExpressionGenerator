@@ -15,6 +15,21 @@ int BuildLiteralASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
     return (*aroot) ? 1 : 0;
 }
 
+int BuildVariableASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
+{
+    if (mroot->children_num > 0) {
+        *aroot = new_ASTNodeVariable(ASTN_Variable, mroot->children[0]->contents);
+        ASTNode *tmp = *aroot;
+        for (int i = 2; i < mroot->children_num; i += 2) {
+            tmp->variable.LHS = new_ASTNodeVariable(ASTN_Variable, mroot->children[i]->contents);
+            tmp = tmp->variable.LHS;
+        }
+    } else {
+        *aroot = new_ASTNodeVariable(ASTN_Variable, mroot->contents);
+    }
+    return 1;
+}
+
 int BuildPrimaryASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
 {
     if (strstr(mroot->tag, "unary|>") != 0) {
@@ -27,6 +42,8 @@ int BuildPrimaryASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
         return (*aroot != 0) ? 1 : 0;
     } else if (strstr(mroot->tag, "literal|>") != 0) {
         return BuildLiteralASTFromMPC(mroot, aroot);
+    } else if (strstr(mroot->tag, "variable") != 0) {
+        return BuildVariableASTFromMPC(mroot, aroot);
     }
     return 0;
 }
@@ -105,6 +122,12 @@ void PrintAST(ASTNode *root)
             printf("%d", root->integer.value);
         } else if (root->type == ASTN_Floating) {
             printf("%.2ff", root->floating.value);
+        } else if (root->type == ASTN_Variable) {
+            printf("%s", root->variable.name);
+            if (root->variable.LHS) {
+                printf(".");
+                PrintAST(root->variable.LHS);
+            }
         } else if (root->type == ASTN_UnaryOperator) {
             printf("(-)");
             PrintAST(root->unop.LHS);
