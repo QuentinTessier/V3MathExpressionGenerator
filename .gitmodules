@@ -1,6 +1,0 @@
-[submodule "extern/mpc"]
-	path = extern/mpc
-	url = git@github.com:orangeduck/mpc.git
-[submodule "extern/Array"]
-	path = extern/Array
-	url = git@github.com:QuentinTessier/Array.git

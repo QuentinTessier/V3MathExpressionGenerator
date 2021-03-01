@@ -1,0 +1,62 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 778b03bd58f4ab32360e73594690c28579bfabd02b482a86e804c434cd3ea7de
+
+name:           V3MathExpressionGenerator
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/V3MathExpressionGenerator#readme>
+homepage:       https://github.com/githubuser/V3MathExpressionGenerator#readme
+bug-reports:    https://github.com/githubuser/V3MathExpressionGenerator/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2021 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/V3MathExpressionGenerator
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_V3MathExpressionGenerator
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable V3MathExpressionGenerator-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_V3MathExpressionGenerator
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      V3MathExpressionGenerator
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+test-suite V3MathExpressionGenerator-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_V3MathExpressionGenerator
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      V3MathExpressionGenerator
+    , base >=4.7 && <5
+  default-language: Haskell2010
