@@ -21,3 +21,12 @@ static inline enum UnaryOperatorType ConvertContentToUnaryOperatorType(char cons
     else
         return UnaryOperatorError;
 }
+
+/**
+ * Node Unary - : f32
+ *     |
+ * Node Unary - : f32
+ *     |
+ * Expression : f32
+ *
+ */

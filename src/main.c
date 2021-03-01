@@ -5,6 +5,8 @@
 #include "utils/mpc_step.h"
 #include "lang/lang.h"
 
+INIT_TYPEINFO_CONTEXT();
+
 #define NParser 15
 mpc_parser_t *LanguageParser[NParser] = {
     0
@@ -78,9 +80,10 @@ int REPL(int build_AST, mpc_parser_t *lang, ASTNode **root)
                     if (!BuildExpressionASTFromMPC(ast, root)) {
                         fprintf(stderr, "Failed to build tree\n");
                     } else {
+                        TypeAssignementPass(root);
                         PrintAST(*root);
                         fprintf(stdout, "\n");
-                        //TranspileAST(*root, "REPL");
+                        TranspileAST(*root, "REPL");
                         DestroyAST(*root);
                         *root = 0;
                     }
@@ -105,6 +108,7 @@ int main(int ac, char **av)
 
     mpc_result_t r;
     ASTNode *root;
+    init_TypeInfo_AtomicTypes();
     if (ac > 1) {
         if (mpc_parse_contents(av[1], lang, &r)) {
             mpc_ast_print(r.output);
@@ -129,5 +133,6 @@ int main(int ac, char **av)
     }
 
     DestroyParser();
+    destroy_TypeInfo();
     return 0;
 }

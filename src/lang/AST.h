@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include "types.h"
 #include "Nodes/Integer.h"
 #include "Nodes/Floating.h"
 #include "Nodes/Variable.h"
@@ -26,6 +27,7 @@ typedef struct ASTNode {
         ASTNodeBinaryOperatorData binop;
         ASTNodeUnaryOperatorData unop;
     };
+    ExpressionType *expType;
 } ASTNode;
 
 static inline ASTNode *new_ASTNode(ASTNodeType type, void *data, size_t n)

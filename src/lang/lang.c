@@ -73,9 +73,9 @@ int BuildTermASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
             if (!BuildTermASTFromMPC(mroot->children[save + 1], &temp->binop.RHS))
                 return 0;
         } else {
-            temp->binop.RHS = new_ASTNodeBinaryOperator(ASTN_BinaryOperator, ConvertContentToUnaryOperatorType(mroot->children[index]->contents));
+            temp->binop.RHS = new_ASTNodeBinaryOperator(ASTN_BinaryOperator, ConvertContentToBinaryOperatorType(mroot->children[index]->contents));
             temp = temp->binop.RHS;
-            if (!BuildTermASTFromMPC(mroot->children[index - 1], &temp->binop.RHS))
+            if (!BuildTermASTFromMPC(mroot->children[index - 1], &temp->binop.LHS))
                 return 0;
         }
     }
@@ -89,8 +89,8 @@ int BuildExpressionASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
     if (index == -1)
         return BuildTermASTFromMPC((mroot->children_num == 1 ? mroot->children[0] : mroot), aroot);
     int first_pass = 1;
-    mpc_ast_t *child = mpc_ast_get_child_lb(mroot, "binop_exp|regex", 0);
-    *aroot = new_ASTNodeBinaryOperator(ASTN_BinaryOperator, ConvertContentToBinaryOperatorType(child->contents));
+    printf("%d => %s\n", index, mroot->children[index]->contents);
+    *aroot = new_ASTNodeBinaryOperator(ASTN_BinaryOperator, ConvertContentToBinaryOperatorType(mroot->children[index]->contents));
     if (*aroot == 0)
         return 0;
     ASTNode *temp = *aroot;
@@ -106,9 +106,10 @@ int BuildExpressionASTFromMPC(mpc_ast_t *mroot, ASTNode **aroot)
             if (!BuildTermASTFromMPC(mroot->children[save + 1], &temp->binop.RHS))
                 return 0;
         } else {
-            temp->binop.RHS = new_ASTNodeBinaryOperator(ASTN_BinaryOperator, ConvertContentToUnaryOperatorType(mroot->children[index]->contents));
+            printf("%d => %s\n", index, mroot->children[index]->contents);
+            temp->binop.RHS = new_ASTNodeBinaryOperator(ASTN_BinaryOperator, ConvertContentToBinaryOperatorType(mroot->children[index]->contents));
             temp = temp->binop.RHS;
-            if (!BuildTermASTFromMPC(mroot->children[index - 1], &temp->binop.RHS))
+            if (!BuildTermASTFromMPC(mroot->children[index - 1], &temp->binop.LHS))
                 return 0;
         }
     }
@@ -136,6 +137,7 @@ void PrintAST(ASTNode *root)
             PrintAST(root->binop.RHS);
             printf("%c", ConvertBinaryOperatorTypeToChar(root->binop.type));
         }
+        printf("{%s}", root->expType->name);
     }
 }
 

@@ -10,3 +10,5 @@ void PrintAST(ASTNode *root);
 void DestroyAST(ASTNode *root);
 
 void TranspileAST(ASTNode *root, const char *name);
+
+void TypeAssignementPass(ASTNode **root);
